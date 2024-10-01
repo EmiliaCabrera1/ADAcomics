@@ -10,60 +10,88 @@
   </head>
   <body class="fondo">
     <header class="flex items-center justify-center py-10">
-      <h1 class="text-center text-8xl text-stone-100 text-border">ADACOMICS</h1>
+      <h1
+        class="text-center text-8xl text-stone-100 [text-shadow:_4px_4px_4px_rgba(0,0,0,1)]"
+      >
+        ADACOMICS
+      </h1>
     </header>
     <div class="fondo-blanco h-screen">
       <main>
-        <label for="search">
-          Busqueda:
-          <input
-            type="text"
-            id="busqueda"
-            name="busqueda"
-            placeholder="Ingresa tu búsqueda"
-            class=""
-          />
-        </label>
-        <label for="select">
-          Tipo:
-          <select name="tipo" id="tipo">
-            <option value="comics">Comics</option>
-            <option value="personajes">Personajes</option>
-          </select>
-        </label>
-        <label for="select">
-          Orden:
-          <select name="orden" id="orden">
-            <option value="a-z">A-Z</option>
-            <option value="z-a">Z-A</option>
-            <option value="mas-nuevos">Mas nuevos</option>
-            <option value="mas-viejos">Mas viejos</option>
-          </select>
-        </label>
-        <button id="buscar" class="">Buscar</button>
-        <div
-          id="card"
-          class="h-[280px] w-[150px] bg-[#dddddd] shadow-lg rounded-lg m-4 p-2 border border-black flex flex-col"
-        >
-          <figure class="z-10 m-1 object-fill rounded-lg shadow-lg">
-            <img
-              class="object-fill rounded-lg shadow-lg"
-              src="./comic-ejemplo.png"
-              alt="comic ejemplo"
+        <div class="flex mx-8 my-5 py-4">
+          <label for="search" class="flex flex-col flex-grow">
+            Busqueda:
+            <input
+              type="text"
+              id="busqueda"
+              name="busqueda"
+              placeholder="Ingresa tu búsqueda"
+              class="mt-1 mr-2 px-2 py-1 bg-[#e3d363] shadow shadow-stone-600 border border-stone-800 placeholder-stone-800 focus:outline-none focus:border-cyan-800-0.5 focus:shadow-lg focus:ring-1 focus:ring-cyan-800"
             />
-          </figure>
-          <h3
-            class="bg-[#e3d363] p-2 shadow border border-black -mt-4 z-20 mr-4 -ml-1 rounded"
-          >
-            nombre
-          </h3>
-          <div class="h-full relative">
-            <img
-              src="./img-ico/puntos-card.svg"
-              alt="puntos-card"
-              class="w-[40px] absolute bottom-0 right-0"
-            />
+          </label>
+          <label for="select" class="flex flex-col w-1/6">
+            Tipo:
+            <select
+              name="tipo"
+              id="tipo"
+              class="mt-1 mr-2 px-2 py-1 bg-[#e3d363] shadow shadow-stone-600 border border-stone-600 focus:outline-none focus:border-cyan-800-0.5 focus:shadow-lg focus:ring-1 focus:ring-cyan-800"
+            >
+              <option value="comics">Comics</option>
+              <option value="personajes">Personajes</option>
+            </select>
+          </label>
+          <label for="select" class="flex flex-col w-1/6">
+            Orden:
+            <select
+              name="orden"
+              id="orden"
+              class="mt-1 mr-2 px-2 py-1 bg-[#e3d363] shadow shadow-stone-600 border border-stone-800 focus:outline-none focus:border-cyan-800-0.5 focus:shadow-lg focus:ring-1 focus:ring-cyan-800"
+            >
+              <option value="a-z">A-Z</option>
+              <option value="z-a">Z-A</option>
+              <option value="mas-nuevos">Mas nuevos</option>
+              <option value="mas-viejos">Mas viejos</option>
+            </select>
+          </label>
+          <div class="mt-auto ml-auto">
+            <button
+              id="buscar"
+              class="h-9 w-20 bg-[#e3d363] shadow-lg shadow-stone-600 border border-stone-800 rounded my-auto hover:border-cyan-800 hover:shadow-inner hover:font-semibold"
+            >
+              Buscar
+            </button>
           </div>
+        </div>
+        <div class="mx-12">
+          <div
+            id="card"
+            class="h-[280px] w-[150px] bg-[#dddddd] bg-opacity-80 shadow-lg shadow-stone-600 rounded-lg m-4 p-2 border border-stone-800 flex flex-col"
+          >
+            <figure
+              class="z-10 m-1 object-fill rounded-lg shadow-lg shadow-stone-600 border border-stone-800"
+            >
+              <img
+                class="object-fill rounded-lg shadow-lg shadow-stone-600"
+                src="./comic-ejemplo.png"
+                alt="comic ejemplo"
+              />
+            </figure>
+            <h3
+              class="bg-[#e3d363] p-2 shadow-lg shadow-stone-400 border border-black -mt-4 z-20 mr-4 -ml-1"
+            >
+              nombre
+            </h3>
+            <div class="h-full relative">
+              <img
+                src="./img-ico/puntos-card.svg"
+                alt="puntos-card"
+                class="w-[40px] absolute bottom-0 right-0"
+              />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div id="card-descripcion"></div>
         </div>
       </main>
       <footer></footer>

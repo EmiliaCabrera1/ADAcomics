@@ -3,9 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ADAcomics</title>
+    <link rel="shortcut icon" href="./favico.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="fondo">
+    <header class="flex items-center justify-center py-10">
+      <h1 class="text-center text-8xl text-stone-100 text-border">ADACOMICS</h1>
+    </header>
+    <div class="fondo-blanco h-screen">
+      <main>
+        <label for="search">
+          Busqueda:
+          <input
+            type="text"
+            id="busqueda"
+            name="busqueda"
+            placeholder="Ingresa tu búsqueda"
+            class=""
+          />
+        </label>
+        <label for="select">
+          Tipo:
+          <select name="tipo" id="tipo">
+            <option value="comics">Comics</option>
+            <option value="personajes">Personajes</option>
+          </select>
+        </label>
+        <label for="select">
+          Orden:
+          <select name="orden" id="orden">
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
+            <option value="mas-nuevos">Mas nuevos</option>
+            <option value="mas-viejos">Mas viejos</option>
+          </select>
+        </label>
+        <button id="buscar" class="">Buscar</button>
+        <div
+          id="card"
+          class="h-[280px] w-[150px] bg-[#dddddd] shadow-lg rounded-lg m-4 p-2 border border-black flex flex-col"
+        >
+          <figure class="z-10 m-1 object-fill rounded-lg shadow-lg">
+            <img
+              class="object-fill rounded-lg shadow-lg"
+              src="./comic-ejemplo.png"
+              alt="comic ejemplo"
+            />
+          </figure>
+          <h3
+            class="bg-[#e3d363] p-2 shadow border border-black -mt-4 z-20 mr-4 -ml-1 rounded"
+          >
+            nombre
+          </h3>
+          <div class="h-full relative">
+            <img
+              src="./img-ico/puntos-card.svg"
+              alt="puntos-card"
+              class="w-[40px] absolute bottom-0 right-0"
+            />
+          </div>
+        </div>
+      </main>
+      <footer></footer>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>

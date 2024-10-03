@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="./favico.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="fondo">
+  <body class="fondo bg-no-repeat bg-cover bg-center h-screen">
     <header class="flex items-center justify-center py-10">
       <h1
         class="text-center text-8xl text-stone-100 [text-shadow:_4px_4px_4px_rgba(0,0,0,1)]"
@@ -16,7 +16,7 @@
         ADACOMICS
       </h1>
     </header>
-    <div class="fondo-blanco h-screen">
+    <div class="fondo-blanco h-full">
       <main>
         <div class="flex mx-8 my-5 py-4">
           <label for="search" class="flex flex-col flex-grow">
@@ -37,7 +37,7 @@
               class="mt-1 mr-2 px-2 py-1 bg-[#e3d363] shadow shadow-stone-600 border border-stone-600 focus:outline-none focus:border-cyan-800-0.5 focus:shadow-lg focus:ring-1 focus:ring-cyan-800"
             >
               <option value="comics">Comics</option>
-              <option value="personajes">Personajes</option>
+              <option value="characters">Personajes</option>
             </select>
           </label>
           <label for="select" class="flex flex-col w-1/6">
@@ -90,8 +90,58 @@
             </div>
           </div>
         </div>
-        <div>
-          <div id="card-descripcion"></div>
+        <div class="h-screen flex items-center flex w-full hidden">
+          <div
+            id="card-descripcion"
+            class="flex bg-[#dddddd] bg-opacity-80 shadow-lg shadow-stone-600 rounded-lg m-4 p-2 border border-stone-800 w-full mx-[10%] overflow-visible"
+          >
+            <figure class="object-fit w-[300px] shadow-lg shadow-stone-600">
+              <img
+                class="object-fill items-center justify-center"
+                src="./comic-ejemplo.png"
+                alt="comic ejemplo"
+              />
+            </figure>
+            <div class="flex-col w-full ml-8">
+              <div class="info -mr-10">
+                <h2 class="font-semibold">Nombre</h2>
+              </div>
+              <div class="info -mr-10">
+                <h4 class="font-semibold">Fecha</h4>
+                <p>Info</p>
+              </div>
+              <div class="info -mr-10">
+                <h4 class="font-semibold">Guionista</h4>
+                <p>Info</p>
+              </div>
+              <div class="info">
+                <h4 class="font-semibold">Descripcion</h4>
+                <p>Info</p>
+              </div>
+
+              <div class="mt-12 relative">
+                <img
+                  src="./img-ico/puntos-card.svg"
+                  alt="puntos-card"
+                  class="w-[40px] absolute bottom-0 right-0"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="paginado" class="flex items-center justify-center p-4">
+          <button class="shadow-lg shadow-stone-600 hover:shadow-inner m-4">
+            <img src="./img-ico/bt-pg-1.svg" alt="Volver a la primer pagina" />
+          </button>
+          <button class="shadow-lg shadow-stone-600 hover:shadow-inner m-4">
+            <img src="./img-ico/bt-pg-2.svg" alt="Volver una pagina" />
+          </button>
+          <button class="shadow-lg shadow-stone-600 hover:shadow-inner m-4">
+            <img src="./img-ico/bt-pg-3.svg" alt="Avanzar una pagina" />
+          </button>
+          <button class="shadow-lg shadow-stone-600 hover:shadow-inner m-4">
+            <img src="./img-ico/bt-pg-4.svg" alt="Avanzar a la ultima pagina" />
+          </button>
         </div>
       </main>
       <footer></footer>

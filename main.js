@@ -27,6 +27,7 @@ const descripcionDiv = $("div-descripcion");
 const tituloPersonaje = $("titulo-personaje");
 
 const extras = $("extras");
+const botonVolver = $("boton-volver");
 
 let info = [];
 
@@ -193,9 +194,6 @@ function mostrarInfoPersonaje(index) {
   tituloPersonaje.innerText = "Comics";
 }
 
-buscarBoton.addEventListener("click", mostrarTarjetasComics);
-mostrarTarjetasComics();
-
 function obtenerPersonajesDeComics(personajes) {
   personajes.items.map(async (item) => {
     const response = await fetch(item.resourceURI + autentication, {
@@ -233,3 +231,12 @@ function obtenerPersonajesDeComics(personajes) {
     extras.appendChild(tarjeta);
   });
 }
+
+function volver() {
+  contenedorCards.classList.remove("hidden");
+  infoComicPag.classList.add("hidden");
+}
+botonVolver.addEventListener("click", volver);
+
+buscarBoton.addEventListener("click", mostrarTarjetasComics);
+mostrarTarjetasComics();

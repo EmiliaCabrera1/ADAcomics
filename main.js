@@ -29,6 +29,13 @@ const tituloPersonaje = $("titulo-personaje");
 const extras = $("extras");
 const botonVolver = $("boton-volver");
 
+const pagPrincipal = $("pag-principal");
+const pagAnterior = $("pag-anterior");
+const pagSiguiente = $("pag-siguiente");
+const pagFinal = $("pag-final");
+
+let offset = 0;
+
 let info = [];
 
 const obtenerComics = async () => {
@@ -53,8 +60,15 @@ const obtenerComics = async () => {
       ? `&titleStartsWith=${busquedaInput.value}`
       : "";
 
+  const paginado = `&offset=${offset}`;
+
   const response = await fetch(
-    urlApi + urlComics + autentication + parametrosDeBusqueda + order,
+    urlApi +
+      urlComics +
+      autentication +
+      parametrosDeBusqueda +
+      order +
+      paginado,
     {
       method: "GET",
       headers: {
@@ -164,6 +178,9 @@ async function mostrarTarjetasComics() {
   info.map((infoTarjeta, index) => {
     generarTarjeta(infoTarjeta, index);
   });
+
+  contenedorCards.classList.remove("hidden");
+  infoComicPag.classList.add("hidden");
 }
 
 function mostrarInfoComic(index) {
@@ -192,9 +209,13 @@ function mostrarInfoPersonaje(index) {
   guionDiv.classList.add("hidden");
   descripcionDiv.classList.add("hidden");
   tituloPersonaje.innerText = "Comics";
+
+  console.log(infoTarjeta);
+  obtenerComicsDePersonajes(infoTarjeta.comics);
 }
 
 function obtenerPersonajesDeComics(personajes) {
+  extras.innerHTML = "";
   personajes.items.map(async (item) => {
     const response = await fetch(item.resourceURI + autentication, {
       method: "GET",
@@ -223,10 +244,48 @@ function obtenerPersonajesDeComics(personajes) {
               </figure>
               <h3
                 id="nombre-personaje"
-                class="text-xs bg-[#e3d363] p-2 shadow-lg shadow-stone-400 border border-black -mt-9 z-20 ml-4 py-2 px-4 inline block"
+                class="text-xs bg-[#e3d363] p-2 shadow-lg shadow-stone-400 border border-black -mt-9 z-20 ml-4 py-2 px-4 inline block max-w-[110px] "
               >
                 ${respuestaPersonaje.name}
-              </h3>;`;
+              </h3>`;
+
+    extras.appendChild(tarjeta);
+  });
+}
+
+function obtenerComicsDePersonajes(comics) {
+  extras.innerHTML = "";
+  comics.items.map(async (item) => {
+    const response = await fetch(item.resourceURI + autentication, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .catch((error) => console.error(error));
+
+    respuestaComics = response.data.results[0];
+    console.log(respuestaComics);
+
+    const tarjeta = document.createElement("div");
+    tarjeta.classList.add(["flex", "flex-col", "inline-flex", "m-8"]);
+    tarjeta.innerHTML = `
+              <figure
+                class="h-[180px] w-[100px] z-10 m-1 object-fill rounded-lg shadow-lg shadow-stone-600 border border-stone-800 "
+              >
+                <img
+                  id="img-comic"
+                  src="${respuestaComics.thumbnail.path}.${respuestaComics.thumbnail.extension}"
+                  alt="img-comic"
+                  class="h-[180px] w-[100px] object-cover overflow-hidden rounded-lg shadow-lg shadow-stone-600"
+                />
+              </figure>
+              <h3
+                id="nombre-personaje"
+                class=" absolute text-xs bg-[#e3d363] p-2 shadow-lg shadow-stone-400 border border-black -mt-4 z-30 mr-4 ml-2 mb-10 max-w-[140px] ">
+                ${respuestaComics.title}
+              </h3>`;
 
     extras.appendChild(tarjeta);
   });

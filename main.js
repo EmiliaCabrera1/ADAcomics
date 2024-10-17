@@ -37,6 +37,7 @@ const pagFinal = $("pag-final");
 let offset = 0;
 
 let info = [];
+let infoTotal = [];
 
 const obtenerComics = async () => {
   let order = ``;
@@ -80,6 +81,7 @@ const obtenerComics = async () => {
     .catch((error) => console.error(error));
 
   info = response.data.results;
+  infoTotal = response.data.total;
 };
 
 const obtenerPersonajes = async () => {
@@ -104,8 +106,15 @@ const obtenerPersonajes = async () => {
       ? `&nameStartsWith=${busquedaInput.value}`
       : "";
 
+  const paginado = `&offset=${offset}`;
+
   const response = await fetch(
-    urlApi + urlPersonajes + autentication + parametrosDeBusqueda + order,
+    urlApi +
+      urlPersonajes +
+      autentication +
+      parametrosDeBusqueda +
+      order +
+      paginado,
     {
       method: "GET",
       headers: {
@@ -118,6 +127,7 @@ const obtenerPersonajes = async () => {
 
   console.log(response);
   info = response.data.results;
+  infoTotal = response.data.total;
 };
 
 function generarTarjeta(infoTarjeta, index) {
@@ -298,4 +308,30 @@ function volver() {
 botonVolver.addEventListener("click", volver);
 
 buscarBoton.addEventListener("click", mostrarTarjetasComics);
+
+function navegarPaginaPrincipal() {
+  offset = 0;
+  mostrarTarjetasComics();
+}
+pagPrincipal.addEventListener("click", navegarPaginaPrincipal);
+
+function navegarProximaPagina() {
+  offset = offset + 20;
+  mostrarTarjetasComics();
+}
+pagSiguiente.addEventListener("click", navegarProximaPagina);
+
+function navegarPaginaAnterior() {
+  offset = offset - 20;
+  mostrarTarjetasComics();
+}
+pagAnterior.addEventListener("click", navegarPaginaAnterior);
+
+function navegarPaginaFinal() {
+  offset = infoTotal - 20;
+  console.log(offset);
+  mostrarTarjetasComics();
+}
+pagFinal.addEventListener("click", navegarPaginaFinal);
+
 mostrarTarjetasComics();

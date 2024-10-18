@@ -227,12 +227,15 @@ function mostrarInfoPersonaje(index) {
 function obtenerPersonajesDeComics(personajes) {
   extras.innerHTML = "";
   personajes.items.map(async (item) => {
-    const response = await fetch(item.resourceURI + autentication, {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
+    const response = await fetch(
+      item.resourceURI.replace("http", "https") + autentication,
+      {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .catch((error) => console.error(error));
 
@@ -266,12 +269,15 @@ function obtenerPersonajesDeComics(personajes) {
 function obtenerComicsDePersonajes(comics) {
   extras.innerHTML = "";
   comics.items.map(async (item) => {
-    const response = await fetch(item.resourceURI + autentication, {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
+    const response = await fetch(
+      item.resourceURI.replace("http", "https") + autentication,
+      {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .catch((error) => console.error(error));
 

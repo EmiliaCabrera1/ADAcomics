@@ -1,4 +1,4 @@
-const urlApi = "http://gateway.marvel.com";
+const urlApi = "https://gateway.marvel.com";
 const urlComics = "/v1/public/comics";
 const urlPersonajes = "/v1/public/characters";
 const apiKey = "3548d21d53c8e352587d13d82244845b";
